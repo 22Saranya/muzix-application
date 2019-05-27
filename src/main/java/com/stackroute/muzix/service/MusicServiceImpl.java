@@ -31,6 +31,7 @@ public class MusicServiceImpl implements MusicService {
         if (savedAlbum == null) {
             throw new TrackAlreadyExistsException("Album Already Exists");
         }
+
         return savedAlbum;
     }
 

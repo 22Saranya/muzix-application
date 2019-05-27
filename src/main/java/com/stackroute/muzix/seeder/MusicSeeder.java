@@ -12,8 +12,9 @@ import org.springframework.stereotype.Component;
 import org.springframework.beans.factory.annotation.Value;
 
 
-@PropertySource("application.properties")
+
 @Component
+@PropertySource("classpath:application.properties")
 public class MusicSeeder implements ApplicationListener<ContextRefreshedEvent>, CommandLineRunner {
 
     @Autowired

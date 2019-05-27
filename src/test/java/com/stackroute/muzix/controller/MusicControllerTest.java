@@ -50,9 +50,7 @@ public class MusicControllerTest {
         MockitoAnnotations.initMocks(this);
         mockMvc = MockMvcBuilders.standaloneSetup(musicController).build();
         album = new Album();
-        album.setTrackid(1);
-        //track.setFirstName("Jonny");
-        //track.setId(101);
+        album.setTrackid(102);
         album.setTrackname("Believer");
         album.setGenre("action");
         list = new ArrayList();

@@ -30,7 +30,7 @@ public class MusicServiceTest {
 
     //Inject the mocks as dependencies into UserServiceImpl
     @InjectMocks
-    private MusicServiceImpl userService;
+    private MusicServiceImpl musicService;
     List<Album> list= null;
 
 
@@ -41,6 +41,7 @@ public class MusicServiceTest {
         album = new Album();
         album.setTrackid(101);
         album.setTrackname("Jenny");
+        album.setGenre("western");
         list = new ArrayList<>();
         list.add(album);
 
@@ -48,10 +49,10 @@ public class MusicServiceTest {
     }
 
     @Test
-    public void saveUserTestSuccess() throws TrackAlreadyExistsException {
+    public void saveAlbumTestSuccess() throws TrackAlreadyExistsException {
 
         when(musicRepository.save((Album)any())).thenReturn(album);
-        Album savedAlbum = userService.saveAlbum(album);
+        Album savedAlbum = musicService.saveAlbum(album);
         Assert.assertEquals(album,savedAlbum);
 
         //verify here verifies that userRepository save method is only called once
@@ -60,9 +61,9 @@ public class MusicServiceTest {
     }
 
     @Test(expected = TrackAlreadyExistsException.class)
-    public void saveUserTestFailure() throws TrackAlreadyExistsException {
+    public void saveAlbumTestFailure() throws TrackAlreadyExistsException {
         when(musicRepository.save((Album)any())).thenReturn(null);
-        Album savedAlbum = userService.saveAlbum(album);
+        Album savedAlbum = musicService.saveAlbum(album);
         System.out.println("savedAlbum" + savedAlbum);
         Assert.assertEquals(album,savedAlbum);
 
@@ -78,7 +79,7 @@ public class MusicServiceTest {
         musicRepository.save(album);
         //stubbing the mock to return specific data
         when(musicRepository.findAll()).thenReturn(list);
-        List<Album> userlist = userService.getAllAlbum();
+        List<Album> userlist = musicService.getAllAlbum();
         Assert.assertEquals(list,userlist);
     }
 
